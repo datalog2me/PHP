@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>PHP Test</title>
+    </head>
+    <body>
+        メルマガ登録フォーム
+        <form action="./" method="post">
+            名前：<input type="text" name="name" size="40"><br>
+            メール：<input type="text" name="mail" size="40"><br>
+            <input type="submit" value="送信">
+        </form>
+        <?php
+            if(isset($_POST["name"]) && isset($_POST["mail"])){
+                //名前とメールの入力がある場合
+                if(filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)){
+                    //正しいメールアドレス形式の場合
+                    echo "メルマガ登録完了！<br>";
+                    echo "名前：".$_POST["name"]."<br>";
+                    echo "メールアドレス：".$_POST["mail"];
+                }else{
+                    //間違ったメールアドレス形式の場合
+                    echo "メールアドレス「".$_POST["mail"]."」は正しくありません。";
+                }
+            }
+        ?>
+    </body>
+</html>
